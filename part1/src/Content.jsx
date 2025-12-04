@@ -1,14 +1,14 @@
-const Part = (props) => {
+const Part = ({name, exercise}) => {
   return <div>
-    <p>{props.part} {props.exercise}</p>
+    <p>{name} {exercise}</p>
   </div>
 }
 
-const Content = ({ parts, exercises }) => {
+const Content = ({ parts }) => {
   return <div>
-    <Part part={parts[0]} exercise={exercises[0]} />
-    <Part part={parts[1]} exercise={exercises[1]} />
-    <Part part={parts[2]} exercise={exercises[2]} />
+    <Part name={parts[0].name} exercise={parts[0].exercises} />
+    <Part name={parts[1].name} exercise={parts[1].exercises} />
+    <Part name={parts[2].name} exercise={parts[2].exercises} />
   </div>
 }
 export default Content;
