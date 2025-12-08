@@ -6,7 +6,6 @@ const Part = ({name,exercises}) => {
 
 const Content = (props) => {
   const parts = props.parts;
-  console.log(parts);
   return <div>
     <Part name={parts[0].name} exercises={parts[0].exercises} />
     <Part name={parts[1].name} exercise={parts[1].exercises} />

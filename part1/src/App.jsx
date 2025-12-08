@@ -1,44 +1,32 @@
-import Header from './Header';
-import Content from './Content';
-import Total from './Total';
+import { useState } from 'react'
+
+const Button = ({onClick, text}) =>{
+  return <button onClick={onClick}> {text}</button>
+}
 
 const App = () => {
-  
-   const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
-
+  const total = good + neutral + bad
+  const average = total === 0 ? 0 : (good * 1 + neutral * 0 + bad * -1)/total;
+  const positive = total === 0 ? 0 : (good/total) * 100;
   return (
     <div>
-      {/* <h1>{course}</h1> */}
-      <Header course={course.name}/>
-      {/* <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-        </p>
-        <p>
-        {part3} {exercises3}
-        </p> */}
-        <Content parts={course.parts}></Content>
-      {/* <p>Number of exercises {exercises1 + exercises2 + exercises3}</p> */}
-      <Total parts={course.parts} />
+      <h1>Give feedback</h1>
+      <Button onClick = {() => setGood(good+1)} text = "Good"/>
+      <Button onClick = {() => setNeutral(neutral+1)} text = "Neutral" />
+      <Button onClick = {() => setBad(bad+1)} text = "Bad" />
+
+      <h2>Statistics</h2>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>All: {total}</p>
+      <p>Average: {average}</p>
+      <p>Positive: {positive} %</p>
     </div>
   )
 }
