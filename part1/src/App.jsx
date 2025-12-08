@@ -51,7 +51,14 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
   const valueSelector = () =>{selected === anecdotes.length-1 ? setSelected(0) : setSelected(selected+1)}
+
+  const handleVote = () => {
+    const newVotes = [...votes];
+    newVotes[selected]++;
+    setVotes(newVotes);
+  }
 
   return (
     <div>
@@ -64,6 +71,8 @@ const App = () => {
 
       <Button onClick={valueSelector} text="Generate anecdote" />
       <p>{anecdotes[selected]}</p>
+      <p>Votes: {votes[selected]}</p>
+      <Button onClick={handleVote} text="Vote" />
     </div>
   )
 }
