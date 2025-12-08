@@ -3,18 +3,21 @@ import { useState } from 'react'
 const Button = ({onClick, text}) =>{
   return <button onClick={onClick}> {text}</button>
 }
+const StaticLine = ({text, value, sign=''}) => {
+  return <p>{text}: {value} {sign}</p>
+}
 const Statistics = ({good,neutral,bad,total,average,positive}) =>{
   return <div>
     <h2>Statistics</h2>
     {
     total === 0 ? ( <p>No feedback is given</p> ) : 
     (<>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total: {total}</p>
-      <p>Average: {average}</p>
-      <p>Positive: {positive} %</p>
+    <StaticLine text={'Good'} value={good} />
+    <StaticLine text={'Neutral'} value={neutral}/>
+    <StaticLine text={'Bad'} value={bad}/>
+    <StaticLine text={'Total'} value={total}/>
+    <StaticLine text={'Average'} value={average}/>
+    <StaticLine text={'Positive'} value={positive} sign='%'/>
     </>)
     }
   </div>
